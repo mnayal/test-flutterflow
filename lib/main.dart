@@ -5,17 +5,12 @@ import 'package:flutter_localizations/flutter_localizations.dart';
 import 'auth/firebase_user_provider.dart';
 import 'auth/auth_util.dart';
 import 'backend/push_notifications/push_notifications_util.dart';
-import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/flutter_flow_theme.dart';
+import 'flutter_flow/flutter_flow_util.dart';
 import 'flutter_flow/internationalization.dart';
-import 'package:oculus_release/launch/launch_widget.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_fonts/google_fonts.dart';
-import 'tutorials/tutorials_widget.dart';
-import 'dashboard/dashboard_widget.dart';
-import 'about_us/about_us_widget.dart';
-import 'consult/consult_widget.dart';
-import 'settings/settings_widget.dart';
+import 'index.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -27,7 +22,7 @@ void main() async {
 class MyApp extends StatefulWidget {
   // This widget is the root of your application.
   @override
-  _MyAppState createState() => _MyAppState();
+  State<MyApp> createState() => _MyAppState();
 
   static _MyAppState of(BuildContext context) =>
       context.findAncestorStateOfType<_MyAppState>();
@@ -36,24 +31,23 @@ class MyApp extends StatefulWidget {
 class _MyAppState extends State<MyApp> {
   Locale _locale;
   ThemeMode _themeMode = ThemeMode.system;
-  Stream<OculusReleaseFirebaseUser> userStream;
-  OculusReleaseFirebaseUser initialUser;
+
+  Stream<AdagioVRFirebaseUser> userStream;
+  AdagioVRFirebaseUser initialUser;
   bool displaySplashImage = true;
+
   final authUserSub = authenticatedUserStream.listen((_) {});
   final fcmTokenSub = fcmTokenUserStream.listen((_) {});
-
-  void setLocale(Locale value) => setState(() => _locale = value);
-  void setThemeMode(ThemeMode mode) => setState(() {
-        _themeMode = mode;
-      });
 
   @override
   void initState() {
     super.initState();
-    userStream = oculusReleaseFirebaseUserStream()
+    userStream = adagioVRFirebaseUserStream()
       ..listen((user) => initialUser ?? setState(() => initialUser = user));
     Future.delayed(
-        Duration(seconds: 1), () => setState(() => displaySplashImage = false));
+      Duration(seconds: 1),
+      () => setState(() => displaySplashImage = false),
+    );
   }
 
   @override
@@ -63,10 +57,15 @@ class _MyAppState extends State<MyApp> {
     super.dispose();
   }
 
+  void setLocale(Locale value) => setState(() => _locale = value);
+  void setThemeMode(ThemeMode mode) => setState(() {
+        _themeMode = mode;
+      });
+
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Oculus Release',
+      title: 'AdagioVR',
       localizationsDelegates: [
         FFLocalizationsDelegate(),
         GlobalMaterialLocalizations.delegate,
@@ -79,14 +78,13 @@ class _MyAppState extends State<MyApp> {
       themeMode: _themeMode,
       home: initialUser == null || displaySplashImage
           ? Container(
-              color: FlutterFlowTheme.of(context).background,
+              color: FlutterFlowTheme.of(context).tertiaryColor,
               child: Center(
                 child: Builder(
                   builder: (context) => Image.asset(
-                    'assets/images/WhatsApp_Image_2021-10-22_at_00.21.39.jpeg.png',
-                    width: MediaQuery.of(context).size.width * 0.4,
-                    height: MediaQuery.of(context).size.height * 0.4,
-                    fit: BoxFit.scaleDown,
+                    'assets/images/Adagio_Logo_TURQUOISE.png',
+                    width: 200,
+                    fit: BoxFit.cover,
                   ),
                 ),
               ),

@@ -8,28 +8,12 @@ import '../../flutter_flow/flutter_flow_util.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
 
+import '../../index.dart';
 import '../../main.dart';
-import '../../launch/launch_widget.dart';
-import '../../login/login_widget.dart';
-import '../../forgot_password/forgot_password_widget.dart';
-import '../../create_account/create_account_widget.dart';
-import '../../profile/profile_widget.dart';
-import '../../paywall/paywall_widget.dart';
-import '../../disclaimer/disclaimer_widget.dart';
-import '../../success/success_widget.dart';
-import '../../chooseyour_challenge/chooseyour_challenge_widget.dart';
-import '../../challenge/challenge_widget.dart';
-import '../../blem/blem_widget.dart';
-import '../../change_password/change_password_widget.dart';
-import '../../notifications/notifications_widget.dart';
-import '../../termsofservice/termsofservice_widget.dart';
 
 class PushNotificationsHandler extends StatefulWidget {
-  const PushNotificationsHandler(
-      {Key key, this.handlePushNotification, this.child})
-      : super(key: key);
+  const PushNotificationsHandler({Key key, this.child}) : super(key: key);
 
-  final Function(BuildContext) handlePushNotification;
   final Widget child;
 
   @override
@@ -41,6 +25,10 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   bool _loading = false;
 
   Future handleOpenedPushNotification() async {
+    if (isWeb) {
+      return;
+    }
+
     final notification = await FirebaseMessaging.instance.getInitialMessage();
     if (notification != null) {
       await _handlePushNotification(notification);
@@ -77,14 +65,13 @@ class _PushNotificationsHandlerState extends State<PushNotificationsHandler> {
   @override
   Widget build(BuildContext context) => _loading
       ? Container(
-          color: FlutterFlowTheme.of(context).background,
+          color: FlutterFlowTheme.of(context).tertiaryColor,
           child: Center(
             child: Builder(
               builder: (context) => Image.asset(
-                'assets/images/WhatsApp_Image_2021-10-22_at_00.21.39.jpeg.png',
-                width: MediaQuery.of(context).size.width * 0.4,
-                height: MediaQuery.of(context).size.height * 0.4,
-                fit: BoxFit.scaleDown,
+                'assets/images/Adagio_Logo_TURQUOISE.png',
+                width: 200,
+                fit: BoxFit.cover,
               ),
             ),
           ),
@@ -103,11 +90,11 @@ final pageBuilderMap = <String, Future<Widget> Function(Map<String, dynamic>)>{
   'Success': (data) async => SuccessWidget(),
   'ChooseyourChallenge': (data) async => ChooseyourChallengeWidget(),
   'Challenge': (data) async => ChallengeWidget(),
-  'Tutorials': (data) async => NavBarPage(initialPage: 'TutorialsWidget'),
-  'AboutUs': (data) async => NavBarPage(initialPage: 'AboutUsWidget'),
-  'Consult': (data) async => NavBarPage(initialPage: 'ConsultWidget'),
+  'Tutorials': (data) async => NavBarPage(initialPage: 'Tutorials'),
+  'AboutUs': (data) async => NavBarPage(initialPage: 'AboutUs'),
+  'Consult': (data) async => NavBarPage(initialPage: 'Consult'),
   'BLEM': (data) async => BlemWidget(),
-  'Settings': (data) async => NavBarPage(initialPage: 'SettingsWidget'),
+  'Settings': (data) async => NavBarPage(initialPage: 'Settings'),
   'changePassword': (data) async => ChangePasswordWidget(),
   'notifications': (data) async => NotificationsWidget(),
   'Termsofservice': (data) async => TermsofserviceWidget(),

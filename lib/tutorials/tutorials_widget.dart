@@ -1,7 +1,6 @@
 import '../components/prospectus_widget.dart';
 import '../components/targetmemory_widget.dart';
 import '../components/video_widget.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -39,27 +38,7 @@ class _TutorialsWidgetState extends State<TutorialsWidget> {
                 ),
           ),
         ),
-        actions: [
-          FlutterFlowIconButton(
-            borderColor: Colors.transparent,
-            borderRadius: 30,
-            borderWidth: 1,
-            buttonSize: 60,
-            icon: Icon(
-              Icons.arrow_forward,
-              color: FlutterFlowTheme.of(context).background,
-              size: 30,
-            ),
-            onPressed: () async {
-              await Navigator.push(
-                context,
-                MaterialPageRoute(
-                  builder: (context) => NavBarPage(initialPage: 'Dashboard'),
-                ),
-              );
-            },
-          ),
-        ],
+        actions: [],
         centerTitle: false,
         elevation: 2,
       ),
@@ -398,6 +377,39 @@ class _TutorialsWidgetState extends State<TutorialsWidget> {
                               ),
                             ],
                           ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 180),
+                      child: FFButtonWidget(
+                        onPressed: () async {
+                          await Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                              builder: (context) =>
+                                  NavBarPage(initialPage: 'Dashboard'),
+                            ),
+                          );
+                        },
+                        text: 'Next',
+                        options: FFButtonOptions(
+                          width: 230,
+                          height: 50,
+                          color: FlutterFlowTheme.of(context).primaryColor,
+                          textStyle:
+                              FlutterFlowTheme.of(context).subtitle2.override(
+                                    fontFamily: 'Lexend Deca',
+                                    color: Colors.white,
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                          elevation: 0,
+                          borderSide: BorderSide(
+                            color: Colors.transparent,
+                            width: 1,
+                          ),
+                          borderRadius: 40,
                         ),
                       ),
                     ),

@@ -1,6 +1,6 @@
 {
-    "name": "Oculus Release",
-    "short_name": "Oculus Release",
+    "name": "AdagioVR",
+    "short_name": "AdagioVR",
     "start_url": ".",
     "display": "standalone",
     "background_color": "#0175C2",

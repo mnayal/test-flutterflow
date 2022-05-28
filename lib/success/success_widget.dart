@@ -1,5 +1,4 @@
 import '../auth/auth_util.dart';
-import '../flutter_flow/flutter_flow_icon_button.dart';
 import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_widgets.dart';
@@ -21,43 +20,13 @@ class _SuccessWidgetState extends State<SuccessWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).tertiaryColor,
       body: SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.max,
           children: [
             Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(20, 0, 20, 0),
-              child: Row(
-                mainAxisSize: MainAxisSize.max,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Card(
-                    clipBehavior: Clip.antiAliasWithSaveLayer,
-                    color: Color(0xFF1E2429),
-                    elevation: 2,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(40),
-                    ),
-                    child: FlutterFlowIconButton(
-                      borderColor: Colors.transparent,
-                      borderRadius: 30,
-                      buttonSize: 46,
-                      icon: Icon(
-                        Icons.close_rounded,
-                        color: Colors.white,
-                        size: 20,
-                      ),
-                      onPressed: () async {
-                        Navigator.pop(context);
-                      },
-                    ),
-                  ),
-                ],
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 224, 0, 0),
+              padding: EdgeInsetsDirectional.fromSTEB(0, 124, 0, 0),
               child: Card(
                 clipBehavior: Clip.antiAliasWithSaveLayer,
                 color: FlutterFlowTheme.of(context).secondaryColor,
@@ -94,7 +63,7 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                   currentUserDisplayName,
                   style: GoogleFonts.getFont(
                     'Overpass',
-                    color: FlutterFlowTheme.of(context).background,
+                    color: FlutterFlowTheme.of(context).primaryColor,
                     fontWeight: FontWeight.w100,
                     fontSize: 40,
                   ),
@@ -108,8 +77,8 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                 textAlign: TextAlign.center,
                 style: FlutterFlowTheme.of(context).bodyText2.override(
                       fontFamily: 'Lexend Deca',
-                      color: FlutterFlowTheme.of(context).background,
-                      fontSize: 24,
+                      color: FlutterFlowTheme.of(context).primaryColor,
+                      fontSize: 14,
                       fontWeight: FontWeight.normal,
                     ),
               ),
@@ -134,14 +103,14 @@ class _SuccessWidgetState extends State<SuccessWidget> {
                         },
                         text: 'Get Started',
                         options: FFButtonOptions(
-                          width: 430,
-                          height: 80,
+                          width: 230,
+                          height: 50,
                           color: FlutterFlowTheme.of(context).secondaryColor,
                           textStyle:
                               FlutterFlowTheme.of(context).subtitle2.override(
                                     fontFamily: 'Lexend Deca',
                                     color: Colors.white,
-                                    fontSize: 26,
+                                    fontSize: 16,
                                     fontWeight: FontWeight.w500,
                                   ),
                           elevation: 0,

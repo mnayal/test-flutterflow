@@ -21,7 +21,7 @@ class _LaunchWidgetState extends State<LaunchWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      backgroundColor: FlutterFlowTheme.of(context).primaryColor,
+      backgroundColor: FlutterFlowTheme.of(context).background,
       body: Column(
         mainAxisSize: MainAxisSize.max,
         children: [
@@ -51,6 +51,83 @@ class _LaunchWidgetState extends State<LaunchWidget> {
                             width: 100,
                             height: 100,
                             decoration: BoxDecoration(),
+                            child: Column(
+                              mainAxisSize: MainAxisSize.max,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Row(
+                                  mainAxisSize: MainAxisSize.max,
+                                  mainAxisAlignment: MainAxisAlignment.center,
+                                  children: [
+                                    Padding(
+                                      padding: EdgeInsetsDirectional.fromSTEB(
+                                          0, 30, 0, 30),
+                                      child: Image.asset(
+                                        'assets/images/WhatsApp_Image_2022-02-21_at_10.23.52.jpeg',
+                                        width: 250,
+                                        height: 250,
+                                        fit: BoxFit.fitWidth,
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 20, 8),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Achieve your potential',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .title1
+                                              .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
+                                                fontSize: 20,
+                                                fontWeight: FontWeight.bold,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                                Padding(
+                                  padding: EdgeInsetsDirectional.fromSTEB(
+                                      20, 0, 20, 8),
+                                  child: Row(
+                                    mainAxisSize: MainAxisSize.max,
+                                    children: [
+                                      Expanded(
+                                        child: Text(
+                                          'Invest 45 min, 3-4/week, to achieve your potential & happiness.',
+                                          textAlign: TextAlign.center,
+                                          style: FlutterFlowTheme.of(context)
+                                              .subtitle2
+                                              .override(
+                                                fontFamily: 'Lexend Deca',
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .secondaryColor,
+                                                fontSize: 16,
+                                                fontWeight: FontWeight.normal,
+                                              ),
+                                        ),
+                                      ),
+                                    ],
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Container(
+                            width: 100,
+                            height: 100,
+                            decoration: BoxDecoration(),
                             child: Padding(
                               padding:
                                   EdgeInsetsDirectional.fromSTEB(0, 0, 0, 15),
@@ -67,8 +144,8 @@ class _LaunchWidgetState extends State<LaunchWidget> {
                                             0, 0, 0, 20),
                                         child: Image.asset(
                                           'assets/images/WhatsApp_Image_2022-02-21_at_10.23.52_(1).jpeg',
-                                          width: 300,
-                                          height: 300,
+                                          width: 250,
+                                          height: 250,
                                           fit: BoxFit.fitWidth,
                                         ),
                                       ),
@@ -88,7 +165,9 @@ class _LaunchWidgetState extends State<LaunchWidget> {
                                                 .title1
                                                 .override(
                                                   fontFamily: 'Lexend Deca',
-                                                  color: Colors.white,
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .primaryColor,
                                                   fontSize: 25,
                                                   fontWeight: FontWeight.bold,
                                                 ),
@@ -111,7 +190,9 @@ class _LaunchWidgetState extends State<LaunchWidget> {
                                                 .subtitle2
                                                 .override(
                                                   fontFamily: 'Lexend Deca',
-                                                  color: Color(0x99FFFFFF),
+                                                  color: FlutterFlowTheme.of(
+                                                          context)
+                                                      .secondaryColor,
                                                   fontSize: 16,
                                                   fontWeight: FontWeight.normal,
                                                 ),
@@ -162,7 +243,9 @@ class _LaunchWidgetState extends State<LaunchWidget> {
                                               .title1
                                               .override(
                                                 fontFamily: 'Lexend Deca',
-                                                color: Colors.white,
+                                                color:
+                                                    FlutterFlowTheme.of(context)
+                                                        .primaryColor,
                                                 fontSize: 20,
                                                 fontWeight: FontWeight.bold,
                                               ),
@@ -180,79 +263,6 @@ class _LaunchWidgetState extends State<LaunchWidget> {
                                       Expanded(
                                         child: Text(
                                           'Our experiences are filed in our minds; Traumatic, emotionally loaded experiences get saved inappropriately and we keep replaying them, and they keep affecting out daily lives.',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .subtitle2
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Color(0x99FFFFFF),
-                                                fontSize: 16,
-                                                fontWeight: FontWeight.normal,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                              ],
-                            ),
-                          ),
-                          Container(
-                            width: 100,
-                            height: 100,
-                            decoration: BoxDecoration(),
-                            child: Column(
-                              mainAxisSize: MainAxisSize.max,
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Row(
-                                  mainAxisSize: MainAxisSize.max,
-                                  mainAxisAlignment: MainAxisAlignment.center,
-                                  children: [
-                                    Padding(
-                                      padding: EdgeInsetsDirectional.fromSTEB(
-                                          0, 30, 0, 30),
-                                      child: Image.asset(
-                                        'assets/images/WhatsApp_Image_2022-02-21_at_10.23.52.jpeg',
-                                        width: 300,
-                                        height: 300,
-                                        fit: BoxFit.fitWidth,
-                                      ),
-                                    ),
-                                  ],
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 0, 20, 8),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Achieve your potential',
-                                          textAlign: TextAlign.center,
-                                          style: FlutterFlowTheme.of(context)
-                                              .title1
-                                              .override(
-                                                fontFamily: 'Lexend Deca',
-                                                color: Colors.white,
-                                                fontSize: 25,
-                                                fontWeight: FontWeight.bold,
-                                              ),
-                                        ),
-                                      ),
-                                    ],
-                                  ),
-                                ),
-                                Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      20, 0, 20, 8),
-                                  child: Row(
-                                    mainAxisSize: MainAxisSize.max,
-                                    children: [
-                                      Expanded(
-                                        child: Text(
-                                          'Invest 45 min, 3-4/week, to achieve your potential & happiness.',
                                           textAlign: TextAlign.center,
                                           style: FlutterFlowTheme.of(context)
                                               .subtitle2

@@ -1,5 +1,4 @@
 import 'package:chewie/chewie.dart';
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:video_player/video_player.dart';
@@ -10,6 +9,8 @@ enum VideoType {
   asset,
   network,
 }
+
+Set<VideoPlayerController> _videoPlayers = Set();
 
 class FlutterFlowVideoPlayer extends StatefulWidget {
   const FlutterFlowVideoPlayer({
@@ -23,6 +24,7 @@ class FlutterFlowVideoPlayer extends StatefulWidget {
     this.showControls = true,
     this.allowFullScreen = true,
     this.allowPlaybackSpeedMenu = false,
+    this.lazyLoad = false,
   });
 
   final String path;
@@ -35,6 +37,7 @@ class FlutterFlowVideoPlayer extends StatefulWidget {
   final bool showControls;
   final bool allowFullScreen;
   final bool allowPlaybackSpeedMenu;
+  final bool lazyLoad;
 
   @override
   State<StatefulWidget> createState() => _FlutterFlowVideoPlayerState();
@@ -52,8 +55,9 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
 
   @override
   void dispose() {
-    _videoPlayerController.dispose();
-    _chewieController.dispose();
+    _videoPlayers.remove(_videoPlayerController);
+    _videoPlayerController?.dispose();
+    _chewieController?.dispose();
     super.dispose();
   }
 
@@ -62,7 +66,7 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
       : widget.width;
 
   double get height => widget.height == null || widget.height >= double.infinity
-      ? (width != null ? width / aspectRatio : null)
+      ? width / aspectRatio
       : widget.height;
 
   double get aspectRatio =>
@@ -73,7 +77,9 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
     _videoPlayerController = widget.videoType == VideoType.network
         ? VideoPlayerController.network(widget.path)
         : VideoPlayerController.asset(widget.path);
-    await _videoPlayerController.initialize();
+    if (!widget.lazyLoad) {
+      await _videoPlayerController?.initialize();
+    }
     _chewieController = ChewieController(
       videoPlayerController: _videoPlayerController,
       deviceOrientationsOnEnterFullScreen: [
@@ -88,6 +94,22 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
       allowFullScreen: widget.allowFullScreen,
       allowPlaybackSpeedChanging: widget.allowPlaybackSpeedMenu,
     );
+
+    _videoPlayers.add(_videoPlayerController);
+    _videoPlayerController.addListener(() {
+      // Stop all other players when one video is playing.
+      if (_videoPlayerController.value.isPlaying) {
+        _videoPlayers.forEach((otherPlayer) {
+          if (otherPlayer != _videoPlayerController &&
+              otherPlayer.value.isPlaying) {
+            setState(() {
+              otherPlayer.pause();
+            });
+          }
+        });
+      }
+    });
+
     setState(() {});
   }
 
@@ -98,7 +120,9 @@ class _FlutterFlowVideoPlayerState extends State<FlutterFlowVideoPlayer> {
           height: height,
           width: width,
           child: _chewieController != null &&
-                  _chewieController.videoPlayerController.value.isInitialized
+                  (widget.lazyLoad ||
+                      _chewieController
+                          .videoPlayerController.value.isInitialized)
               ? Chewie(controller: _chewieController)
               : Column(
                   mainAxisAlignment: MainAxisAlignment.center,

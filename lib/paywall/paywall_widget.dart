@@ -122,6 +122,7 @@ class _PaywallWidgetState extends State<PaywallWidget> {
                       onTap: () => setState(
                         () => paymentCodeVisibility = !paymentCodeVisibility,
                       ),
+                      focusNode: FocusNode(skipTraversal: true),
                       child: Icon(
                         paymentCodeVisibility
                             ? Icons.visibility_outlined
@@ -173,13 +174,13 @@ class _PaywallWidgetState extends State<PaywallWidget> {
                   },
                   text: 'Confirm payment code',
                   options: FFButtonOptions(
-                    width: 330,
+                    width: 230,
                     height: 60,
                     color: Colors.white,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0xFF4B39EF),
-                          fontSize: 20,
+                          fontSize: 16,
                           fontWeight: FontWeight.w500,
                         ),
                     elevation: 3,
@@ -205,17 +206,17 @@ class _PaywallWidgetState extends State<PaywallWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await launchURL('https://adagiovr.uk/checkout-2/');
+                    await launchURL('https://adagiovr.co.uk/get-started');
                   },
                   text: 'Get Payment Code',
                   options: FFButtonOptions(
-                    width: 330,
+                    width: 230,
                     height: 60,
                     color: FlutterFlowTheme.of(context).secondaryColor,
                     textStyle: FlutterFlowTheme.of(context).subtitle2.override(
                           fontFamily: 'Lexend Deca',
                           color: Colors.white,
-                          fontSize: 20,
+                          fontSize: 16,
                         ),
                     borderSide: BorderSide(
                       color: Colors.transparent,

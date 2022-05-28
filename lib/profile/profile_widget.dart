@@ -25,7 +25,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
   @override
   void initState() {
     super.initState();
-    textController = TextEditingController(text: '[display_name]');
+    textController = TextEditingController();
   }
 
   @override
@@ -104,20 +104,26 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 allowPhoto: true,
                               );
                               if (selectedMedia != null &&
-                                  validateFileFormat(
-                                      selectedMedia.storagePath, context)) {
+                                  selectedMedia.every((m) => validateFileFormat(
+                                      m.storagePath, context))) {
                                 showUploadMessage(
                                   context,
                                   'Uploading file...',
                                   showLoading: true,
                                 );
-                                final downloadUrl = await uploadData(
-                                    selectedMedia.storagePath,
-                                    selectedMedia.bytes);
+                                final downloadUrls = (await Future.wait(
+                                        selectedMedia.map((m) async =>
+                                            await uploadData(
+                                                m.storagePath, m.bytes))))
+                                    .where((u) => u != null)
+                                    .toList();
                                 ScaffoldMessenger.of(context)
                                     .hideCurrentSnackBar();
-                                if (downloadUrl != null) {
-                                  setState(() => uploadedFileUrl = downloadUrl);
+                                if (downloadUrls != null &&
+                                    downloadUrls.length ==
+                                        selectedMedia.length) {
+                                  setState(() =>
+                                      uploadedFileUrl = downloadUrls.first);
                                   showUploadMessage(
                                     context,
                                     'Success!',
@@ -139,7 +145,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                                 shape: BoxShape.circle,
                               ),
                               child: Image.asset(
-                                'assets/images/WhatsApp_Image_2021-10-22_at_00.21.39.jpeg.png',
+                                'assets/images/Adagio_Profile_Image_SKY_BLUE.png',
                                 fit: BoxFit.fitWidth,
                               ),
                             ),
@@ -158,12 +164,12 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                   ),
                 ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(240, 30, 240, 16),
+                  padding: EdgeInsetsDirectional.fromSTEB(20, 30, 20, 16),
                   child: TextFormField(
                     controller: textController,
                     obscureText: false,
                     decoration: InputDecoration(
-                      labelText: 'Full Name',
+                      labelText: 'Username',
                       hintText: 'Your full name...',
                       hintStyle:
                           FlutterFlowTheme.of(context).bodyText1.override(
@@ -194,7 +200,7 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0xFF14181B),
-                          fontSize: 24,
+                          fontSize: 14,
                           fontWeight: FontWeight.normal,
                         ),
                   ),
@@ -219,14 +225,14 @@ class _ProfileWidgetState extends State<ProfileWidget> {
                       },
                       text: 'Save Changes',
                       options: FFButtonOptions(
-                        width: 340,
-                        height: 60,
+                        width: 240,
+                        height: 50,
                         color: Color(0xFF39D2C0),
                         textStyle:
                             FlutterFlowTheme.of(context).subtitle2.override(
                                   fontFamily: 'Lexend Deca',
                                   color: Colors.white,
-                                  fontSize: 26,
+                                  fontSize: 16,
                                   fontWeight: FontWeight.normal,
                                 ),
                         elevation: 2,

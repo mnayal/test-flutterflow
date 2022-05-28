@@ -82,7 +82,7 @@ class _ConsultWidgetState extends State<ConsultWidget> {
                                 shape: BoxShape.circle,
                               ),
                               child: Image.asset(
-                                'assets/images/WhatsApp_Image_2021-10-22_at_00.21.39.jpeg.png',
+                                'assets/images/Adagio_Profile_Image_SKY_BLUE.png',
                               ),
                             ),
                           ),
@@ -235,7 +235,7 @@ class _ConsultWidgetState extends State<ConsultWidget> {
                 padding: EdgeInsetsDirectional.fromSTEB(0, 15, 0, 0),
                 child: FFButtonWidget(
                   onPressed: () async {
-                    await launchURL('https://adagiovr.uk/faqs/');
+                    await launchURL('https://adagiovr.co.uk/faq');
                   },
                   text: 'FAQs',
                   icon: FaIcon(
@@ -259,12 +259,12 @@ class _ConsultWidgetState extends State<ConsultWidget> {
                 ),
               ),
               Align(
-                alignment: AlignmentDirectional(0, 0),
+                alignment: AlignmentDirectional(-0.75, 0),
                 child: Padding(
                   padding: EdgeInsetsDirectional.fromSTEB(0, 40, 0, 0),
                   child: Text(
                     'You can also reach us at:\n+44 07423264886\ninfo@adagiovr.uk',
-                    textAlign: TextAlign.center,
+                    textAlign: TextAlign.start,
                     style: FlutterFlowTheme.of(context).bodyText1.override(
                           fontFamily: 'Lexend Deca',
                           color: Color(0xFF787A7B),

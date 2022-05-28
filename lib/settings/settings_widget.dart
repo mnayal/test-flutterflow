@@ -56,7 +56,7 @@ class _SettingsWidgetState extends State<SettingsWidget> {
                         shape: BoxShape.circle,
                       ),
                       child: Image.asset(
-                        'assets/images/USer.png',
+                        'assets/images/Adagio_Profile_Image_SKY_BLUE.png',
                       ),
                     ),
                   ),

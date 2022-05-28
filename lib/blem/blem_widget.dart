@@ -4,6 +4,7 @@ import '../flutter_flow/flutter_flow_theme.dart';
 import '../flutter_flow/flutter_flow_util.dart';
 import '../flutter_flow/flutter_flow_video_player.dart';
 import '../main.dart';
+import '../custom_code/widgets/index.dart' as custom_widgets;
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -98,46 +99,44 @@ class _BlemWidgetState extends State<BlemWidget> with TickerProviderStateMixin {
         centerTitle: false,
         elevation: 2,
       ),
-      backgroundColor: Color(0xFF262D34),
+      backgroundColor: FlutterFlowTheme.of(context).dark600,
       body: SafeArea(
         child: GestureDetector(
           onTap: () => FocusScope.of(context).unfocus(),
-          child: Stack(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
             children: [
-              Image.asset(
-                'assets/images/loading_screen_-_Copy.png',
-                fit: BoxFit.cover,
-              ),
-              SingleChildScrollView(
-                child: Column(
-                  mainAxisSize: MainAxisSize.max,
-                  children: [
-                    FlutterFlowVideoPlayer(
-                      path:
-                          'https://firebasestorage.googleapis.com/v0/b/adagiovr-b9d3c.appspot.com/o/The%20Dreamer%20by%20AdagioVR.mp4?alt=media&token=a04e7c89-b3d1-4afa-a046-128aa98facd2',
-                      videoType: VideoType.network,
-                      autoPlay: true,
-                      looping: false,
-                      showControls: true,
-                      allowFullScreen: true,
-                      allowPlaybackSpeedMenu: false,
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 30, 0, 0),
-                      child: Text(
-                        'You are about to begin a VR session',
-                        style: FlutterFlowTheme.of(context).bodyText1,
-                      ).animated([animationsMap['textOnPageLoadAnimation1']]),
-                    ),
-                    Padding(
-                      padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
-                      child: Text(
-                        'Please remember to:\n1. Turn off all notifications\n2. Switch to full screen in landscape mode\n3. Place your device in the headset\n4. Sit in a quiet comfortable place',
-                        style: FlutterFlowTheme.of(context).bodyText1,
-                      ).animated([animationsMap['textOnPageLoadAnimation2']]),
-                    ),
-                  ],
+              Container(
+                width: 0,
+                height: 0,
+                child: custom_widgets.Weblock(
+                  width: 0,
+                  height: 0,
                 ),
+              ),
+              FlutterFlowVideoPlayer(
+                path:
+                    'https://firebasestorage.googleapis.com/v0/b/adagiovr-b9d3c.appspot.com/o/The%20Dreamer%20by%20AdagioVR%20VR%20split.mp4?alt=media&token=b564e9ce-2a3b-467b-94af-81e85e6b6954',
+                videoType: VideoType.network,
+                autoPlay: true,
+                looping: false,
+                showControls: true,
+                allowFullScreen: true,
+                allowPlaybackSpeedMenu: false,
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 170, 0, 0),
+                child: Text(
+                  'You are about to begin a VR session',
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ).animated([animationsMap['textOnPageLoadAnimation1']]),
+              ),
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 0),
+                child: Text(
+                  'Please remember to:\n1. Turn off all notifications\n2. Switch to full screen in landscape mode\n3. Place your device in the headset\n4. Sit in a quiet comfortable place',
+                  style: FlutterFlowTheme.of(context).bodyText1,
+                ).animated([animationsMap['textOnPageLoadAnimation2']]),
               ),
             ],
           ),

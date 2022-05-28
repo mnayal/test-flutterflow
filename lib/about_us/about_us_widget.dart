@@ -24,7 +24,7 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
         title: Padding(
           padding: EdgeInsetsDirectional.fromSTEB(0, 0, 0, 2),
           child: Text(
-            'About Us',
+            'About',
             textAlign: TextAlign.start,
             style: FlutterFlowTheme.of(context).bodyText1.override(
                   fontFamily: 'Lexend Deca',
@@ -46,8 +46,9 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
                 color: Color(0xFFF0E027),
                 size: 30,
               ),
-              onPressed: () {
-                print('IconButton pressed ...');
+              onPressed: () async {
+                await launchURL(
+                    'https://play.google.com/store/apps/details?id=com.company.AdagioVR&hl=en_GB&gl=US');
               },
             ),
           ),
@@ -57,46 +58,56 @@ class _AboutUsWidgetState extends State<AboutUsWidget> {
       ),
       backgroundColor: FlutterFlowTheme.of(context).primaryColor,
       body: SafeArea(
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          children: [
-            Stack(
+        child: Padding(
+          padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
+          child: SingleChildScrollView(
+            child: Column(
+              mainAxisSize: MainAxisSize.max,
               children: [
+                ClipRRect(
+                  borderRadius: BorderRadius.only(
+                    bottomLeft: Radius.circular(3),
+                    bottomRight: Radius.circular(3),
+                    topLeft: Radius.circular(10),
+                    topRight: Radius.circular(10),
+                  ),
+                  child: Image.asset(
+                    'assets/images/Welcome.png',
+                    fit: BoxFit.cover,
+                  ),
+                ),
                 Padding(
-                  padding: EdgeInsetsDirectional.fromSTEB(0, 2, 0, 0),
-                  child: SingleChildScrollView(
-                    child: Column(
-                      mainAxisSize: MainAxisSize.max,
-                      children: [
-                        Padding(
-                          padding: EdgeInsetsDirectional.fromSTEB(5, 0, 0, 0),
-                          child: ClipRRect(
-                            borderRadius: BorderRadius.only(
-                              bottomLeft: Radius.circular(3),
-                              bottomRight: Radius.circular(3),
-                              topLeft: Radius.circular(10),
-                              topRight: Radius.circular(10),
-                            ),
-                            child: Image.asset(
-                              'assets/images/AdagioVR.png',
-                              fit: BoxFit.cover,
-                            ),
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 0),
+                  child: InkWell(
+                    onTap: () async {
+                      await launchURL(
+                          'https://www.howardpsychology.co.uk/eye-movement-desensitisation-and-reprocessing-emdr.html');
+                    },
+                    child: Text(
+                      'Source: \n1. https://www.howardpsychology.co.uk/eye-movement-desensitisation-and-reprocessing-emdr.html',
+                      style: FlutterFlowTheme.of(context).bodyText1.override(
+                            fontFamily: 'Lexend Deca',
+                            fontSize: 14,
                           ),
-                        ),
-                      ],
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsetsDirectional.fromSTEB(10, 0, 10, 10),
+                  child: InkWell(
+                    onTap: () async {
+                      await launchURL(
+                          'https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5681964/');
+                    },
+                    child: Text(
+                      '2. https://www.ncbi.nlm.nih.gov/pmc/articles/PMC5681964/',
+                      style: FlutterFlowTheme.of(context).bodyText1,
                     ),
                   ),
                 ),
               ],
             ),
-            Text(
-              'Source: Url',
-              style: FlutterFlowTheme.of(context).bodyText1.override(
-                    fontFamily: 'Lexend Deca',
-                    fontSize: 24,
-                  ),
-            ),
-          ],
+          ),
         ),
       ),
     );

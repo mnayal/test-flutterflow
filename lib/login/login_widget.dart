@@ -53,16 +53,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                   Expanded(
                     child: Align(
                       alignment: AlignmentDirectional(0, 0),
-                      child: Padding(
-                        padding: EdgeInsetsDirectional.fromSTEB(0, 56, 0, 0),
-                        child: ClipRRect(
-                          borderRadius: BorderRadius.circular(60),
-                          child: Image.asset(
-                            'assets/images/WhatsApp_Image_2021-10-22_at_00.21.39.jpeg.png',
-                            width: 280,
-                            height: 280,
-                            fit: BoxFit.fitWidth,
-                          ),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(50),
+                        child: Image.asset(
+                          'assets/images/Adagio_Logo_WHITE.png',
+                          width: 220,
+                          height: 220,
+                          fit: BoxFit.fitWidth,
                         ),
                       ),
                     ),
@@ -133,7 +130,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                               },
                               text: 'Create Account',
                               options: FFButtonOptions(
-                                width: 125,
+                                width: 145,
                                 height: 28,
                                 color: Color(0x00FFFFFF),
                                 textStyle: FlutterFlowTheme.of(context)
@@ -221,6 +218,7 @@ class _LoginWidgetState extends State<LoginWidget> {
                           onTap: () => setState(
                             () => passwordVisibility = !passwordVisibility,
                           ),
+                          focusNode: FocusNode(skipTraversal: true),
                           child: Icon(
                             passwordVisibility
                                 ? Icons.visibility_outlined
@@ -288,12 +286,13 @@ class _LoginWidgetState extends State<LoginWidget> {
                                 return;
                               }
 
-                              await Navigator.push(
+                              await Navigator.pushAndRemoveUntil(
                                 context,
                                 MaterialPageRoute(
                                   builder: (context) =>
                                       NavBarPage(initialPage: 'Dashboard'),
                                 ),
+                                (r) => false,
                               );
                             },
                             text: 'Login',

@@ -40,7 +40,7 @@ class _ChallengeWidgetState extends State<ChallengeWidget> {
             children: [
               AuthUserStreamWidget(
                 child: Text(
-                  currentUserDocument?.bio,
+                  valueOrDefault(currentUserDocument?.bio, ''),
                   textAlign: TextAlign.center,
                   style: FlutterFlowTheme.of(context).bodyText1.override(
                         fontFamily: 'Lexend Deca',
@@ -82,8 +82,8 @@ class _ChallengeWidgetState extends State<ChallengeWidget> {
                                           0, 0, 0, 20),
                                       child: Image.asset(
                                         'assets/images/11.png',
-                                        width: 350,
-                                        height: 300,
+                                        width: 280,
+                                        height: 280,
                                         fit: BoxFit.cover,
                                       ),
                                     ),

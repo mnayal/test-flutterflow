@@ -32,21 +32,6 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
   Widget build(BuildContext context) {
     return Scaffold(
       key: scaffoldKey,
-      appBar: AppBar(
-        backgroundColor: FlutterFlowTheme.of(context).primaryColor,
-        automaticallyImplyLeading: false,
-        title: Text(
-          'Page Title',
-          style: FlutterFlowTheme.of(context).title2.override(
-                fontFamily: 'Lexend Deca',
-                color: Colors.white,
-                fontSize: 22,
-              ),
-        ),
-        actions: [],
-        centerTitle: false,
-        elevation: 2,
-      ),
       backgroundColor: FlutterFlowTheme.of(context).primaryBackground,
       body: SafeArea(
         child: GestureDetector(
@@ -72,18 +57,14 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                           children: [
                             Expanded(
                               child: Align(
-                                alignment: AlignmentDirectional(0.05, 0),
-                                child: Padding(
-                                  padding: EdgeInsetsDirectional.fromSTEB(
-                                      0, 56, 0, 0),
-                                  child: ClipRRect(
-                                    borderRadius: BorderRadius.circular(50),
-                                    child: Image.asset(
-                                      'assets/images/WhatsApp_Image_2021-10-22_at_00.21.39.jpeg.png',
-                                      width: 200,
-                                      height: 200,
-                                      fit: BoxFit.fill,
-                                    ),
+                                alignment: AlignmentDirectional(0, 0),
+                                child: ClipRRect(
+                                  borderRadius: BorderRadius.circular(50),
+                                  child: Image.asset(
+                                    'assets/images/Adagio_Logo_WHITE.png',
+                                    width: 220,
+                                    height: 220,
+                                    fit: BoxFit.fitWidth,
                                   ),
                                 ),
                               ),
@@ -243,6 +224,7 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                       () => passwordVisibility =
                                           !passwordVisibility,
                                     ),
+                                    focusNode: FocusNode(skipTraversal: true),
                                     child: Icon(
                                       passwordVisibility
                                           ? Icons.visibility_outlined
@@ -284,12 +266,13 @@ class _CreateAccountWidgetState extends State<CreateAccountWidget> {
                                           return;
                                         }
 
-                                        await Navigator.push(
+                                        await Navigator.pushAndRemoveUntil(
                                           context,
                                           MaterialPageRoute(
                                             builder: (context) =>
                                                 ProfileWidget(),
                                           ),
+                                          (r) => false,
                                         );
                                       },
                                       text: 'Create Account',

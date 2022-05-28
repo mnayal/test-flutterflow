@@ -60,78 +60,81 @@ class _DisclaimerWidgetState extends State<DisclaimerWidget> {
             ).image,
           ),
         ),
-        child: Column(
-          mainAxisSize: MainAxisSize.max,
-          mainAxisAlignment: MainAxisAlignment.start,
-          children: [
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(60, 70, 60, 0),
-              child: Text(
-                'AdagioVR is a very powerful tool that has strong effect on the connection of memory & emotions. This product is exclusively meant for subclinical users and under NO circumstances must be used by anyone with a clinical diagnosis or equally serious situation. Every effort has been made to accurately represent the usage & risks of the product and the value it provides. While we take all precautions to ensure that this tool does not reach any such users, AdagioVR assumes no responsibility for any harm that may come from the improper use of this tool by you or anyone you provide access to.\n\nAdagioVR assumes no responsibility for errors or omissions in the contents of the Service.\nIn no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice.\nThe Company does not warrant that the Service is free of viruses or other harmful components.',
-                textAlign: TextAlign.start,
-                style: FlutterFlowTheme.of(context).bodyText2.override(
-                      fontFamily: 'Lexend Deca',
-                      color: FlutterFlowTheme.of(context).background,
-                      fontSize: 16,
-                    ),
-              ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(60, 0, 50, 400),
-              child: SwitchListTile.adaptive(
-                value: switchListTileValue ??= false,
-                onChanged: (newValue) =>
-                    setState(() => switchListTileValue = newValue),
-                title: Text(
-                  'I have read & understood the above information.',
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.center,
+            children: [
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(20, 20, 20, 0),
+                child: Text(
+                  'AdagioVR is a very powerful tool that has strong effect on the connection of memory & emotions. This product is exclusively meant for subclinical users and under NO circumstances must be used by anyone with a clinical diagnosis or equally serious situation. Every effort has been made to accurately represent the usage & risks of the product and the value it provides. While we take all precautions to ensure that this tool does not reach any such users, AdagioVR assumes no responsibility for any harm that may come from the improper use of this tool by you or anyone you provide access to.\n\nAdagioVR assumes no responsibility for errors or omissions in the contents of the Service.\nIn no event shall the Company be liable for any special, direct, indirect, consequential, or incidental damages or any damages whatsoever, whether in an action of contract, negligence or other tort, arising out of or in connection with the use of the Service or the contents of the Service. The Company reserves the right to make additions, deletions, or modifications to the contents on the Service at any time without prior notice.\nThe Company does not warrant that the Service is free of viruses or other harmful components.',
                   textAlign: TextAlign.start,
-                  style: FlutterFlowTheme.of(context).title3.override(
+                  style: FlutterFlowTheme.of(context).bodyText2.override(
                         fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).tertiaryColor,
-                        fontSize: 12,
+                        color: FlutterFlowTheme.of(context).background,
+                        fontSize: 14,
                       ),
                 ),
-                tileColor: FlutterFlowTheme.of(context).dark600,
-                dense: false,
-                controlAffinity: ListTileControlAffinity.trailing,
-                contentPadding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
               ),
-            ),
-            Padding(
-              padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 40),
-              child: FFButtonWidget(
-                onPressed: () async {
-                  if (switchListTileValue) {
-                    await Navigator.push(
-                      context,
-                      MaterialPageRoute(
-                        builder: (context) => ChooseyourChallengeWidget(),
-                      ),
-                    );
-                  } else {
-                    return;
-                  }
-                },
-                text: 'Continue',
-                options: FFButtonOptions(
-                  width: 370,
-                  height: 80,
-                  color: FlutterFlowTheme.of(context).dark600,
-                  textStyle: FlutterFlowTheme.of(context).subtitle2.override(
-                        fontFamily: 'Lexend Deca',
-                        color: FlutterFlowTheme.of(context).secondaryColor,
-                        fontSize: 26,
-                      ),
-                  elevation: 2,
-                  borderSide: BorderSide(
-                    color: Colors.transparent,
-                    width: 1,
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(15, 0, 15, 10),
+                child: SwitchListTile.adaptive(
+                  value: switchListTileValue ??= false,
+                  onChanged: (newValue) =>
+                      setState(() => switchListTileValue = newValue),
+                  title: Text(
+                    'I have read & understood the above information.',
+                    textAlign: TextAlign.start,
+                    style: FlutterFlowTheme.of(context).title3.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.of(context).tertiaryColor,
+                          fontSize: 12,
+                        ),
                   ),
-                  borderRadius: 8,
+                  tileColor: FlutterFlowTheme.of(context).dark600,
+                  dense: false,
+                  controlAffinity: ListTileControlAffinity.trailing,
+                  contentPadding: EdgeInsetsDirectional.fromSTEB(0, 10, 0, 0),
                 ),
               ),
-            ),
-          ],
+              Padding(
+                padding: EdgeInsetsDirectional.fromSTEB(0, 20, 0, 40),
+                child: FFButtonWidget(
+                  onPressed: () async {
+                    if (switchListTileValue) {
+                      await Navigator.pushAndRemoveUntil(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => ChooseyourChallengeWidget(),
+                        ),
+                        (r) => false,
+                      );
+                    } else {
+                      return;
+                    }
+                  },
+                  text: 'Continue',
+                  options: FFButtonOptions(
+                    width: 270,
+                    height: 50,
+                    color: FlutterFlowTheme.of(context).dark600,
+                    textStyle: FlutterFlowTheme.of(context).subtitle2.override(
+                          fontFamily: 'Lexend Deca',
+                          color: FlutterFlowTheme.of(context).secondaryColor,
+                          fontSize: 16,
+                        ),
+                    elevation: 2,
+                    borderSide: BorderSide(
+                      color: Colors.transparent,
+                      width: 1,
+                    ),
+                    borderRadius: 8,
+                  ),
+                ),
+              ),
+            ],
+          ),
         ),
       ),
     );
